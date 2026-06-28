@@ -3,288 +3,419 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Two Beans Café ☕🐾</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <title>Two Beans Café SG ☕🐾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy: #1a1a4e;
-      --blue: #2d2d8f;
+      --navy:       #1a1a4e;
+      --blue:       #2d2d8f;
       --brand-blue: #2121a8;
-      --cream: #fdf6ec;
-      --warm: #f5e6cc;
-      --coffee: #6f4e37;
-      --latte: #c9a87c;
-      --gold: #e8b84b;
-      --white: #ffffff;
-      --logo-bg: #eef0fa;
+      --cream:      #fdf6ec;
+      --warm:       #f5e6cc;
+      --parchment:  #f9efe0;
+      --coffee:     #6f4e37;
+      --espresso:   #3b1f0e;
+      --latte:      #c9a87c;
+      --mocha:      #8b5a2b;
+      --gold:       #e8b84b;
+      --steam:      rgba(255,255,255,0.6);
+      --white:      #ffffff;
+      --logo-bg:    #eef0fa;
+      --chalk:      #f0ece0;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Nunito', sans-serif; background-color: var(--cream); color: var(--navy); overflow-x: hidden; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Nunito',sans-serif; background-color:var(--cream); color:var(--navy); overflow-x:hidden; }
 
-    .beans-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-    .bean { position: absolute; animation: floatBean linear infinite; opacity: 0.12; }
+    /* ─── FLOATING BEANS BG ─── */
+    .beans-bg { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+    .bean { position:absolute; animation:floatBean linear infinite; opacity:.1; }
     @keyframes floatBean {
-      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.15; }
-      90%  { opacity: 0.15; }
-      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+      0%   { transform:translateY(110vh) rotate(0deg);   opacity:0; }
+      10%  { opacity:.15; }
+      90%  { opacity:.15; }
+      100% { transform:translateY(-10vh) rotate(720deg); opacity:0; }
     }
 
-    /* ── NAV ── */
+    /* ─── COFFEE RING DECORATIONS ─── */
+    .coffee-ring {
+      position:absolute; border-radius:50%; pointer-events:none;
+      border:3px solid rgba(111,78,55,.12);
+      box-shadow:0 0 0 6px rgba(111,78,55,.05);
+    }
+
+    /* ─── NAV ─── */
     nav {
-      position: fixed; top: 0; width: 100%;
-      background: rgba(26,26,78,0.96);
-      backdrop-filter: blur(14px);
-      z-index: 1000; padding: 10px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+      position:fixed; top:0; width:100%;
+      background:rgba(26,26,78,0.97);
+      backdrop-filter:blur(16px);
+      z-index:1000; padding:10px 40px;
+      display:flex; align-items:center; justify-content:space-between;
+      box-shadow:0 2px 30px rgba(0,0,0,0.4);
+      border-bottom:2px solid rgba(232,184,75,0.2);
     }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-logo img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: var(--logo-bg); border: 2px solid rgba(255,255,255,0.15); transition: transform 0.3s; }
-    .nav-logo img:hover { transform: rotate(10deg) scale(1.1); }
-    .nav-logo-text { font-family: 'Fredoka One', cursive; color: var(--white); font-size: 1.3rem; letter-spacing: 1px; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .nav-logo img { width:46px; height:46px; border-radius:50%; object-fit:cover; background:var(--logo-bg); border:2px solid rgba(232,184,75,0.4); transition:transform .3s; }
+    .nav-logo img:hover { transform:rotate(10deg) scale(1.1); }
+    .nav-logo-text { font-family:'Caveat',cursive; color:var(--white); font-size:1.6rem; letter-spacing:1px; }
+    .nav-links { display:flex; gap:28px; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,.8); text-decoration:none; font-weight:700; font-size:.88rem; letter-spacing:.5px; text-transform:uppercase; transition:color .2s; position:relative; }
+    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--gold); transition:width .3s; border-radius:2px; }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-links a:hover::after { width:100%; }
 
-    /* ── HERO ── */
+    /* ─── STEAM ANIMATION ─── */
+    .steam-wrap { display:flex; gap:6px; justify-content:center; margin-bottom:8px; height:34px; }
+    .steam { width:6px; border-radius:50px; background:rgba(255,255,255,.55); animation:steamRise 2s ease-in-out infinite; filter:blur(1.5px); }
+    .steam:nth-child(1) { height:28px; animation-delay:0s;   }
+    .steam:nth-child(2) { height:36px; animation-delay:.4s;  }
+    .steam:nth-child(3) { height:24px; animation-delay:.8s;  }
+    @keyframes steamRise {
+      0%   { transform:translateY(0)   scaleX(1);   opacity:.7; }
+      50%  { transform:translateY(-12px) scaleX(1.4); opacity:.5; }
+      100% { transform:translateY(-22px) scaleX(.8);  opacity:0; }
+    }
+
+    /* ─── HERO ─── */
     .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(160deg, var(--navy) 0%, #0d0d3a 60%, #1a0a00 100%);
-      overflow: hidden; padding: 100px 20px 80px;
+      position:relative; min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(160deg, var(--navy) 0%, #0d0d3a 55%, #1a0a00 100%);
+      overflow:hidden; padding:100px 20px 80px;
     }
-    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 760px; }
-    .hero-badge { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 800; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; border-radius: 50px; margin-bottom: 32px; }
+    /* Chalk texture overlay */
+    .hero::before {
+      content:''; position:absolute; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:1; opacity:.4;
+    }
+    /* Coffee ring art on hero */
+    .hero-ring-1 { width:320px; height:320px; top:8%; left:-80px; opacity:.06; border-width:18px; }
+    .hero-ring-2 { width:200px; height:200px; bottom:12%; right:-40px; opacity:.07; border-width:12px; }
+    .hero-ring-3 { width:120px; height:120px; top:20%; right:15%; opacity:.05; border-width:8px; }
+
+    .hero-content { position:relative; z-index:2; text-align:center; max-width:800px; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(135deg, rgba(232,184,75,.15), rgba(232,184,75,.08));
+      border:1.5px solid rgba(232,184,75,.5);
+      color:var(--gold); font-weight:800; font-size:.78rem;
+      letter-spacing:2px; text-transform:uppercase; padding:8px 22px;
+      border-radius:50px; margin-bottom:28px;
+      backdrop-filter:blur(8px);
+    }
     .hero-logo-wrap {
-      margin: 0 auto 32px;
-      width: 200px; height: 200px; border-radius: 50%;
-      background: var(--logo-bg);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 6px rgba(255,255,255,0.08), 0 0 0 14px rgba(255,255,255,0.04), 0 24px 80px rgba(0,0,0,0.5);
-      animation: logoPulse 3s ease-in-out infinite;
-      overflow: hidden;
+      margin:0 auto 28px;
+      width:190px; height:190px; border-radius:50%;
+      background:var(--logo-bg);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 0 0 6px rgba(255,255,255,.06), 0 0 0 14px rgba(255,255,255,.03),
+                 0 0 60px rgba(232,184,75,.2), 0 24px 80px rgba(0,0,0,.5);
+      animation:logoPulse 3.5s ease-in-out infinite; overflow:hidden;
     }
-    .hero-logo-wrap img { width: 86%; height: 86%; object-fit: contain; border-radius: 50%; }
+    .hero-logo-wrap img { width:88%; height:88%; object-fit:contain; border-radius:50%; }
     @keyframes logoPulse {
-      0%,100% { box-shadow: 0 0 0 6px rgba(255,255,255,0.08), 0 0 0 14px rgba(255,255,255,0.04), 0 24px 80px rgba(0,0,0,0.5); }
-      50%      { box-shadow: 0 0 0 10px rgba(232,184,75,0.15), 0 0 0 22px rgba(232,184,75,0.06), 0 32px 100px rgba(0,0,0,0.6); }
+      0%,100% { box-shadow:0 0 0 6px rgba(255,255,255,.06),0 0 0 14px rgba(255,255,255,.03),0 0 60px rgba(232,184,75,.2),0 24px 80px rgba(0,0,0,.5); }
+      50%      { box-shadow:0 0 0 10px rgba(232,184,75,.18),0 0 0 22px rgba(232,184,75,.07),0 0 90px rgba(232,184,75,.35),0 32px 100px rgba(0,0,0,.6); }
     }
-    .hero h1 { font-family: 'Fredoka One', cursive; font-size: clamp(2.8rem, 7vw, 5.5rem); color: var(--white); line-height: 1.05; margin-bottom: 8px; }
-    .hero h1 span { color: var(--gold); }
-    .hero-tagline { font-size: 1.15rem; color: rgba(255,255,255,0.75); margin: 16px 0 36px; line-height: 1.7; font-weight: 600; }
-    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { background: var(--gold); color: var(--navy); padding: 14px 32px; border-radius: 50px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 6px 20px rgba(232,184,75,0.4); }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(232,184,75,0.55); }
-    .btn-outline { border: 2px solid rgba(255,255,255,0.4); color: var(--white); padding: 14px 32px; border-radius: 50px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: all 0.2s; }
-    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+    .hero h1 { font-family:'Fredoka One',cursive; font-size:clamp(3rem,7.5vw,6rem); color:var(--white); line-height:1; margin-bottom:6px; }
+    .hero h1 span { color:var(--gold); }
+    .hero-sub { font-family:'Caveat',cursive; font-size:1.5rem; color:rgba(255,255,255,.65); margin-bottom:6px; letter-spacing:.5px; }
+    .hero-tagline { font-size:1.05rem; color:rgba(255,255,255,.7); margin:14px 0 34px; line-height:1.8; font-weight:600; }
+    .hero-tagline em { color:var(--gold); font-style:normal; font-weight:800; }
+    .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .btn-primary { background:var(--gold); color:var(--navy); padding:14px 32px; border-radius:50px; font-weight:800; font-size:1rem; text-decoration:none; transition:transform .2s,box-shadow .2s; box-shadow:0 6px 20px rgba(232,184,75,.4); letter-spacing:.3px; }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(232,184,75,.6); }
+    .btn-outline { border:2px solid rgba(255,255,255,.35); color:var(--white); padding:14px 32px; border-radius:50px; font-weight:800; font-size:1rem; text-decoration:none; transition:all .2s; }
+    .btn-outline:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.7); }
 
     /* RUNNING DOG */
-    .dog-container { position: absolute; bottom: 0; width: 100%; pointer-events: none; z-index: 1; }
-    .running-dog { position: absolute; bottom: 10px; font-size: 3rem; animation: runDog 8s linear infinite; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+    .dog-container { position:absolute; bottom:0; width:100%; pointer-events:none; z-index:1; }
+    .running-dog { position:absolute; bottom:10px; font-size:3rem; animation:runDog 9s linear infinite; filter:drop-shadow(0 4px 10px rgba(0,0,0,.35)); }
     @keyframes runDog {
-      0%   { left: -120px; transform: scaleX(1); }
-      49%  { left: calc(100% + 120px); transform: scaleX(1); }
-      50%  { left: calc(100% + 120px); transform: scaleX(-1); }
-      99%  { left: -120px; transform: scaleX(-1); }
-      100% { left: -120px; transform: scaleX(1); }
+      0%  { left:-120px; transform:scaleX(1); }
+      49% { left:calc(100% + 120px); transform:scaleX(1); }
+      50% { left:calc(100% + 120px); transform:scaleX(-1); }
+      99% { left:-120px; transform:scaleX(-1); }
+      100%{ left:-120px; transform:scaleX(1); }
     }
-    .paw-trail { position: fixed; font-size: 1.2rem; opacity: 0; pointer-events: none; z-index: 1; animation: trailFade 2s ease-out forwards; }
-    @keyframes trailFade { 0% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(0.3) translateY(-20px); } }
+    .paw-trail { position:fixed; font-size:1.2rem; opacity:0; pointer-events:none; z-index:1; animation:trailFade 2s ease-out forwards; }
+    @keyframes trailFade { 0% { opacity:.8; transform:scale(1); } 100% { opacity:0; transform:scale(.3) translateY(-20px); } }
 
-    /* PERKS STRIP */
-    .perks-strip { position: relative; z-index: 2; background: var(--brand-blue); padding: 16px 0; overflow: hidden; }
-    .perks-track { display: flex; gap: 60px; white-space: nowrap; animation: scrollPerks 20s linear infinite; width: max-content; }
-    .perks-track span { font-weight: 800; color: var(--white); font-size: 0.9rem; letter-spacing: 0.5px; }
-    @keyframes scrollPerks { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    /* ─── PERKS STRIP ─── */
+    .perks-strip { position:relative; z-index:2; background:var(--brand-blue); padding:14px 0; overflow:hidden; border-bottom:3px solid rgba(232,184,75,.3); }
+    .perks-track { display:flex; gap:56px; white-space:nowrap; animation:scrollPerks 22s linear infinite; width:max-content; }
+    .perks-track span { font-weight:800; color:var(--white); font-size:.88rem; letter-spacing:.5px; }
+    .perks-track .sep { color:rgba(255,255,255,.3); font-size:1.2rem; }
+    @keyframes scrollPerks { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    /* SECTIONS */
-    section { position: relative; z-index: 2; padding: 90px 20px; }
-    .section-title { font-family: 'Fredoka One', cursive; font-size: clamp(2rem, 5vw, 3rem); text-align: center; margin-bottom: 14px; color: var(--navy); }
-    .section-title span { color: var(--brand-blue); }
-    .section-sub { text-align: center; color: #777; font-size: 1.05rem; margin-bottom: 54px; font-weight: 600; }
-    .container { max-width: 1100px; margin: 0 auto; }
+    /* ─── SECTIONS GENERAL ─── */
+    section { position:relative; z-index:2; padding:90px 20px; }
+    .section-title { font-family:'Fredoka One',cursive; font-size:clamp(2rem,5vw,3rem); text-align:center; margin-bottom:12px; color:var(--navy); }
+    .section-title span { color:var(--brand-blue); }
+    .section-sub { text-align:center; color:#888; font-size:1rem; margin-bottom:52px; font-weight:600; font-family:'Caveat',cursive; font-size:1.2rem; }
+    .container { max-width:1100px; margin:0 auto; }
 
-    /* ── ABOUT ── */
-    .about-section { background: var(--cream); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    @media(max-width:768px){ .about-grid { grid-template-columns: 1fr; } }
-    .about-logo-wrap { display: flex; justify-content: center; align-items: center; }
+    /* ─── ABOUT / STORY ─── */
+    .about-section { background:var(--cream); overflow:hidden; }
+    /* Decorative rings */
+    .about-section .ring-deco-1 { width:260px; height:260px; top:-80px; right:-60px; opacity:.06; border-width:16px; position:absolute; border-radius:50%; border:16px solid var(--coffee); }
+    .about-section .ring-deco-2 { width:140px; height:140px; bottom:40px; left:30px; opacity:.05; border-width:10px; position:absolute; border-radius:50%; border:10px solid var(--mocha); }
+
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    @media(max-width:768px){ .about-grid{grid-template-columns:1fr} }
+
+    .about-logo-wrap { display:flex; justify-content:center; align-items:center; position:relative; }
     .about-logo-circle {
-      width: 300px; height: 300px; border-radius: 50%;
-      background: var(--logo-bg);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 8px rgba(33,33,168,0.08), 0 0 0 18px rgba(33,33,168,0.04), 0 24px 70px rgba(33,33,168,0.18);
-      animation: aboutLogoPulse 3s ease-in-out infinite;
-      overflow: hidden; transition: transform 0.3s;
+      width:280px; height:280px; border-radius:50%;
+      background:var(--logo-bg);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 0 0 10px rgba(33,33,168,.07), 0 0 0 22px rgba(33,33,168,.03),
+                 0 24px 70px rgba(33,33,168,.15);
+      animation:aboutLogoPulse 3.5s ease-in-out infinite;
+      overflow:hidden; transition:transform .3s;
     }
-    .about-logo-circle:hover { transform: scale(1.04) rotate(2deg); }
-    .about-logo-circle img { width: 88%; height: 88%; object-fit: contain; }
+    .about-logo-circle:hover { transform:scale(1.04) rotate(2deg); }
+    .about-logo-circle img { width:88%; height:88%; object-fit:contain; }
     @keyframes aboutLogoPulse {
-      0%,100% { box-shadow: 0 0 0 8px rgba(33,33,168,0.08), 0 0 0 18px rgba(33,33,168,0.04), 0 24px 70px rgba(33,33,168,0.18); }
-      50%      { box-shadow: 0 0 0 12px rgba(33,33,168,0.13), 0 0 0 26px rgba(33,33,168,0.06), 0 32px 90px rgba(33,33,168,0.25); }
+      0%,100%{ box-shadow:0 0 0 10px rgba(33,33,168,.07),0 0 0 22px rgba(33,33,168,.03),0 24px 70px rgba(33,33,168,.15); }
+      50%    { box-shadow:0 0 0 14px rgba(33,33,168,.12),0 0 0 30px rgba(33,33,168,.05),0 32px 90px rgba(33,33,168,.22); }
     }
-    .about-text h3 { font-family: 'Fredoka One', cursive; font-size: 1.9rem; color: var(--navy); margin-bottom: 18px; }
-    .about-text p { color: #555; line-height: 1.85; margin-bottom: 20px; font-size: 1.05rem; }
-    .about-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
-    .chip { background: var(--navy); color: var(--white); padding: 7px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; }
-    .chip.blue { background: var(--brand-blue); }
-    .chip.gold { background: var(--gold); color: var(--navy); }
-
-    /* ── DOGS ── */
-    .dogs-section { background: var(--navy); }
-    .dogs-section .section-title { color: var(--white); }
-    .dogs-section .section-title span { color: var(--gold); }
-    .dogs-section .section-sub { color: rgba(255,255,255,0.55); }
-    .dogs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
-    .dog-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 36px 24px; text-align: center; transition: transform 0.3s, background 0.3s; }
-    .dog-card:hover { transform: translateY(-8px) rotate(1deg); background: rgba(255,255,255,0.12); }
-    .dog-emoji { font-size: 4.5rem; display: block; margin-bottom: 16px; animation: dogWiggle 2s ease-in-out infinite; }
-    @keyframes dogWiggle { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
-    .dog-card:nth-child(2) .dog-emoji { animation-delay: 0.4s; }
-    .dog-card:nth-child(3) .dog-emoji { animation-delay: 0.8s; }
-    .dog-card:nth-child(4) .dog-emoji { animation-delay: 1.2s; }
-    .dog-card h4 { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--white); margin-bottom: 8px; }
-    .dog-card p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.65; }
-    .dog-card .badge { display: inline-block; margin-top: 14px; background: var(--gold); color: var(--navy); font-size: 0.75rem; font-weight: 800; padding: 5px 14px; border-radius: 50px; }
-
-    /* ── COFFEE ANIM ── */
-    .coffee-anim-section { background: var(--brand-blue); padding: 80px 20px; text-align: center; position: relative; z-index: 2; overflow: hidden; }
-    .coffee-anim-section::before { content: '🫘'; position: absolute; font-size: 12rem; opacity: 0.06; top: -30px; left: -30px; animation: slowSpin 25s linear infinite; }
-    .coffee-anim-section::after  { content: '🫘'; position: absolute; font-size: 12rem; opacity: 0.06; bottom: -30px; right: -30px; animation: slowSpin 20s linear infinite reverse; }
-    @keyframes slowSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .coffee-logo-anim { display: inline-block; width: 130px; height: 130px; border-radius: 50%; background: var(--logo-bg); padding: 14px; box-shadow: 0 16px 50px rgba(0,0,0,0.35); animation: cupFloat 3s ease-in-out infinite; margin-bottom: 28px; }
-    .coffee-logo-anim img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
-    @keyframes cupFloat { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-18px) rotate(3deg); } }
-    .coffee-anim-section h3 { font-family: 'Fredoka One', cursive; font-size: 2.4rem; color: var(--white); margin-bottom: 12px; }
-    .coffee-anim-section p { color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 600; }
-
-    /* ── MENU ── */
-    .menu-section { background: var(--warm); }
-    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-    .menu-card { background: var(--white); border-radius: 22px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.07); transition: transform 0.2s, box-shadow 0.2s; border-top: 5px solid var(--brand-blue); }
-    .menu-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,0.12); }
-    .menu-icon { font-size: 2.5rem; margin-bottom: 14px; display: block; }
-    .menu-card h4 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; }
-    .menu-items { list-style: none; }
-    .menu-items li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #e0d5c5; font-size: 0.95rem; color: #555; font-weight: 600; }
-    .menu-items li:last-child { border-bottom: none; }
-    .price { color: var(--brand-blue); font-weight: 800; }
-    .takeaway-note { margin-top: 12px; background: #eef0fa; border: 1.5px solid var(--brand-blue); border-radius: 10px; padding: 8px 12px; font-size: 0.82rem; color: var(--brand-blue); font-weight: 700; }
-
-    /* ── DEAL BANNER ── */
-    .deal-banner { background: linear-gradient(135deg, var(--navy), var(--brand-blue)); color: var(--white); text-align: center; padding: 80px 20px; position: relative; overflow: hidden; z-index: 2; }
-    .deal-banner::before { content: '🐾'; position: absolute; font-size: 9rem; opacity: 0.05; top: -20px; left: -20px; animation: slowSpin 22s linear infinite; }
-    .deal-banner::after  { content: '☕'; position: absolute; font-size: 9rem; opacity: 0.05; bottom: -20px; right: -20px; animation: slowSpin 16s linear infinite reverse; }
-    .deal-banner h2 { font-family: 'Fredoka One', cursive; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 14px; }
-    .deal-banner h2 span { color: var(--gold); }
-    .deal-banner p { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 30px; font-weight: 600; }
-    .deal-tag { display: inline-block; background: var(--gold); color: var(--navy); font-size: 1.2rem; font-weight: 800; padding: 13px 32px; border-radius: 50px; animation: dealPop 1s ease-in-out infinite alternate; }
-    @keyframes dealPop { from { transform: scale(1); } to { transform: scale(1.06); } }
-
-    /* ══════════════════════════════════════
-       INSTAGRAM SECTION
-    ══════════════════════════════════════ */
-    .instagram-section {
-      background: linear-gradient(160deg, #f0f2ff 0%, #fdf6ec 100%);
-      padding: 90px 20px;
-      position: relative; z-index: 2; overflow: hidden;
-    }
-    .instagram-section::before {
-      content: '';
-      position: absolute; top: -100px; left: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(33,33,168,0.08), transparent 70%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .instagram-section::after {
-      content: '';
-      position: absolute; bottom: -100px; right: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(232,184,75,0.1), transparent 70%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .ig-header { text-align: center; margin-bottom: 50px; }
-    .ig-handle-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-      color: white; padding: 10px 26px; border-radius: 50px;
-      font-weight: 800; font-size: 1rem; margin-bottom: 22px;
-      box-shadow: 0 6px 24px rgba(131,58,180,0.35);
-      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .ig-handle-badge:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(131,58,180,0.5); }
-    .ig-stats {
-      display: flex; justify-content: center; gap: 40px;
-      flex-wrap: wrap; margin-top: 10px;
-    }
-    .ig-stat { text-align: center; }
-    .ig-stat .num { font-family: 'Fredoka One', cursive; font-size: 2rem; color: var(--navy); display: block; }
-    .ig-stat .label { font-size: 0.78rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-
-    /* Elfsight embed wrapper */
-    .ig-feed-wrap {
-      max-width: 1060px;
-      margin: 0 auto 40px;
-      background: var(--white);
-      border-radius: 24px;
-      padding: 32px 24px;
-      box-shadow: 0 8px 40px rgba(33,33,168,0.1);
-      border: 1px solid rgba(33,33,168,0.08);
-      min-height: 300px;
+    /* Chalk tag under logo */
+    .chalk-tag {
+      position:absolute; bottom:-18px;
+      background:var(--navy); color:var(--gold);
+      font-family:'Caveat',cursive; font-size:1.05rem; font-weight:700;
+      padding:6px 20px; border-radius:50px;
+      letter-spacing:.5px; box-shadow:0 4px 14px rgba(0,0,0,.2);
     }
 
-    .ig-follow-wrap { text-align: center; }
-    .ig-follow-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-      color: white; padding: 15px 36px; border-radius: 50px;
-      font-weight: 800; font-size: 1.05rem; text-decoration: none;
-      box-shadow: 0 6px 24px rgba(131,58,180,0.35);
-      animation: igPulse 2.5s ease-in-out infinite;
-      transition: transform 0.2s;
+    .about-text h3 { font-family:'Fredoka One',cursive; font-size:2rem; color:var(--navy); margin-bottom:18px; }
+    .about-text h3 span { color:var(--brand-blue); }
+    .about-text p { color:#555; line-height:1.9; margin-bottom:18px; font-size:1rem; }
+    .about-chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .chip { padding:7px 16px; border-radius:50px; font-size:.83rem; font-weight:800; }
+    .chip-navy { background:var(--navy); color:var(--white); }
+    .chip-blue { background:var(--brand-blue); color:var(--white); }
+    .chip-gold { background:var(--gold); color:var(--navy); }
+    .chip-coffee { background:var(--coffee); color:var(--white); }
+
+    /* ─── CHALKBOARD BANNER ─── */
+    .chalk-banner {
+      position:relative; z-index:2;
+      background:linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 50%, #1a1a1a 100%);
+      padding:70px 20px; text-align:center; overflow:hidden;
     }
-    .ig-follow-btn:hover { transform: translateY(-3px); }
-    @keyframes igPulse {
-      0%,100% { box-shadow: 0 6px 24px rgba(131,58,180,0.35); }
-      50%      { box-shadow: 0 12px 40px rgba(131,58,180,0.55); }
+    .chalk-banner::before {
+      content:''; position:absolute; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+      pointer-events:none;
     }
+    .chalk-border {
+      position:absolute; inset:12px;
+      border:2px dashed rgba(255,255,255,.12);
+      border-radius:8px; pointer-events:none;
+    }
+    /* chalk doodle corners */
+    .chalk-corner { position:absolute; font-size:2.5rem; opacity:.15; }
+    .chalk-corner.tl { top:20px; left:24px; transform:rotate(-15deg); }
+    .chalk-corner.tr { top:20px; right:24px; transform:rotate(15deg); }
+    .chalk-corner.bl { bottom:20px; left:24px; transform:rotate(10deg); }
+    .chalk-corner.br { bottom:20px; right:24px; transform:rotate(-10deg); }
 
-    /* ── INFO ── */
-    .info-section { background: var(--cream); }
-    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
-    .info-card { background: var(--white); border-radius: 20px; padding: 34px 28px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.07); border-top: 5px solid var(--brand-blue); transition: transform 0.2s; }
-    .info-card:hover { transform: translateY(-5px); }
-    .info-icon { font-size: 2.8rem; margin-bottom: 14px; display: block; }
-    .info-card h4 { font-family: 'Fredoka One', cursive; font-size: 1.15rem; color: var(--navy); margin-bottom: 10px; }
-    .info-card p { color: #666; font-size: 0.95rem; line-height: 1.75; font-weight: 600; }
-    .info-card .highlight { display: inline-block; margin-top: 12px; background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 50px; font-weight: 800; font-size: 0.85rem; text-decoration: none; }
+    .chalk-banner .steam-wrap { margin-bottom:4px; }
+    .chalk-banner .cup-icon { font-size:3.5rem; display:block; margin:0 auto 6px; animation:cupFloat 3s ease-in-out infinite; }
+    @keyframes cupFloat { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-10px) rotate(2deg)} }
+    .chalk-banner h3 { font-family:'Caveat',cursive; font-size:clamp(2rem,5vw,3.2rem); color:var(--chalk); margin-bottom:10px; font-weight:700; }
+    .chalk-banner p { font-family:'Caveat',cursive; font-size:1.4rem; color:rgba(240,236,224,.7); font-weight:500; }
 
-    /* ── FOOTER ── */
-    footer { background: #08081a; color: rgba(255,255,255,0.65); text-align: center; padding: 55px 20px 30px; position: relative; z-index: 2; }
-    .footer-logo-img { width: 70px; height: 70px; border-radius: 50%; background: var(--logo-bg); object-fit: contain; padding: 6px; margin: 0 auto 14px; display: block; box-shadow: 0 8px 28px rgba(0,0,0,0.4); transition: transform 0.3s; }
-    .footer-logo-img:hover { transform: rotate(10deg) scale(1.1); }
-    .footer-name { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--white); margin-bottom: 6px; }
-    .footer-tagline { font-size: 0.95rem; margin-bottom: 28px; font-weight: 600; }
-    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
-    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-paws { font-size: 1.4rem; margin: 12px 0; letter-spacing: 6px; animation: pawShimmer 2.5s ease-in-out infinite; }
-    @keyframes pawShimmer { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
-    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+    /* ─── DOGS SECTION ─── */
+    .dogs-section { background:var(--navy); overflow:hidden; }
+    .dogs-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 20% 50%, rgba(33,33,168,.3) 0%, transparent 60%); pointer-events:none; }
+    .dogs-section::after  { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(111,78,55,.2) 0%, transparent 60%); pointer-events:none; }
+    .dogs-section .section-title { color:var(--white); }
+    .dogs-section .section-title span { color:var(--gold); }
+    .dogs-section .section-sub { color:rgba(255,255,255,.5); }
 
-    /* SCROLL DOG */
-    #scroll-dog { position: fixed; bottom: 24px; right: 24px; z-index: 999; cursor: pointer; background: var(--gold); border-radius: 50%; width: 58px; height: 58px; display: none; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 20px rgba(0,0,0,0.25); transition: transform 0.2s; }
-    #scroll-dog:hover { transform: scale(1.15) rotate(12deg); }
-    .confetti-piece { position: fixed; border-radius: 2px; pointer-events: none; z-index: 9999; animation: confettiFall 1.5s ease-out forwards; }
-    @keyframes confettiFall { 0% { opacity: 1; transform: translateY(0) rotate(0deg); } 100% { opacity: 0; transform: translateY(220px) rotate(720deg); } }
+    .dogs-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:28px; position:relative; z-index:2; }
+    .dog-card {
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:28px; padding:40px 28px; text-align:center;
+      transition:transform .3s,background .3s,box-shadow .3s;
+      backdrop-filter:blur(8px);
+      position:relative; overflow:hidden;
+    }
+    .dog-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--brand-blue), var(--gold)); }
+    .dog-card:hover { transform:translateY(-10px) rotate(1deg); background:rgba(255,255,255,.1); box-shadow:0 20px 50px rgba(0,0,0,.3); }
+    .dog-emoji { font-size:5rem; display:block; margin-bottom:18px; animation:dogWiggle 2.5s ease-in-out infinite; }
+    @keyframes dogWiggle { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(6deg)} }
+    .dog-card:nth-child(2) .dog-emoji { animation-delay:.6s; }
+    .dog-card h4 { font-family:'Fredoka One',cursive; font-size:1.6rem; color:var(--white); margin-bottom:4px; }
+    .dog-breed { font-family:'Caveat',cursive; font-size:1.05rem; color:var(--gold); margin-bottom:12px; font-weight:500; }
+    .dog-card p { color:rgba(255,255,255,.62); font-size:.92rem; line-height:1.7; }
+    .dog-badge { display:inline-block; margin-top:18px; padding:6px 18px; border-radius:50px; font-size:.78rem; font-weight:800; }
+    .dog-badge-gold { background:var(--gold); color:var(--navy); }
+    .dog-badge-blue { background:var(--brand-blue); color:var(--white); }
 
-    @media(max-width:768px) {
-      nav { padding: 10px 18px; }
-      .nav-links { display: none; }
-      .about-logo-circle { width: 220px; height: 220px; }
-      .ig-feed-wrap { padding: 18px 10px; }
+    /* paw print row in dog cards */
+    .paw-row { font-size:1.1rem; letter-spacing:4px; margin:10px 0 4px; opacity:.4; }
+
+    /* ─── TEAM SECTION ─── */
+    .team-section {
+      background:var(--parchment);
+      position:relative; overflow:hidden;
+    }
+    .team-section::before {
+      content:''; position:absolute; inset:0;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%236f4e37' opacity='.06'/%3E%3C/svg%3E") repeat;
+      pointer-events:none;
+    }
+    .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px; position:relative; z-index:1; }
+    .team-card {
+      background:var(--white); border-radius:24px;
+      padding:36px 28px; text-align:center;
+      box-shadow:0 6px 28px rgba(111,78,55,.1);
+      border:1px solid rgba(111,78,55,.1);
+      transition:transform .3s,box-shadow .3s; position:relative;
+    }
+    .team-card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg, var(--brand-blue), var(--mocha));
+      border-radius:0 0 24px 24px;
+    }
+    .team-card:hover { transform:translateY(-6px); box-shadow:0 18px 50px rgba(111,78,55,.18); }
+    .team-avatar { width:90px; height:90px; border-radius:50%; margin:0 auto 18px; display:flex; align-items:center; justify-content:center; font-size:3.2rem; border:3px solid var(--gold); box-shadow:0 6px 20px rgba(0,0,0,.1); animation:teamFloat 3s ease-in-out infinite; }
+    .team-card:nth-child(2) .team-avatar { animation-delay:.5s; }
+    @keyframes teamFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .team-card h4 { font-family:'Fredoka One',cursive; font-size:1.35rem; color:var(--navy); margin-bottom:4px; }
+    .team-role { font-family:'Caveat',cursive; font-size:1.1rem; color:var(--brand-blue); margin-bottom:12px; font-weight:600; }
+    .team-card p { color:#666; font-size:.92rem; line-height:1.7; }
+    .team-note { font-family:'Caveat',cursive; font-size:1.05rem; color:var(--coffee); margin-top:12px; font-weight:500; }
+
+    /* ─── COFFEE ANIM SECTION ─── */
+    .coffee-anim-section {
+      background:linear-gradient(135deg, var(--brand-blue) 0%, #1a1a6e 100%);
+      padding:80px 20px; text-align:center; position:relative; z-index:2; overflow:hidden;
+    }
+    .coffee-anim-section::before { content:'🫘'; position:absolute; font-size:14rem; opacity:.04; top:-40px; left:-40px; animation:slowSpin 28s linear infinite; }
+    .coffee-anim-section::after  { content:'🫘'; position:absolute; font-size:14rem; opacity:.04; bottom:-40px; right:-40px; animation:slowSpin 22s linear infinite reverse; }
+    @keyframes slowSpin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+    .coffee-logo-anim { display:inline-block; width:120px; height:120px; border-radius:50%; background:var(--logo-bg); padding:14px; box-shadow:0 16px 50px rgba(0,0,0,.4); animation:cupFloat2 3.5s ease-in-out infinite; margin-bottom:24px; }
+    .coffee-logo-anim img { width:100%; height:100%; object-fit:contain; border-radius:50%; }
+    @keyframes cupFloat2 { 0%,100%{transform:translateY(0) rotate(-4deg)} 50%{transform:translateY(-16px) rotate(4deg)} }
+
+    .coffee-anim-section h3 { font-family:'Fredoka One',cursive; font-size:2.4rem; color:var(--white); margin-bottom:10px; }
+    .coffee-anim-section p { font-family:'Caveat',cursive; color:rgba(255,255,255,.8); font-size:1.5rem; font-weight:500; }
+    .roast-badges { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:24px; }
+    .roast-badge { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:var(--white); padding:8px 20px; border-radius:50px; font-size:.85rem; font-weight:800; letter-spacing:.5px; backdrop-filter:blur(8px); }
+
+    /* ─── MENU ─── */
+    .menu-section { background:var(--warm); position:relative; overflow:hidden; }
+    .menu-section::before {
+      content:''; position:absolute; inset:0;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='18' fill='none' stroke='%236f4e37' stroke-width='1' opacity='.05'/%3E%3C/svg%3E") repeat;
+      pointer-events:none;
+    }
+    .menu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:26px; position:relative; z-index:1; }
+    .menu-card {
+      background:var(--white); border-radius:24px; padding:30px;
+      box-shadow:0 4px 24px rgba(0,0,0,.08);
+      transition:transform .25s,box-shadow .25s;
+      position:relative; overflow:hidden;
+    }
+    .menu-card-accent { position:absolute; top:0; left:0; right:0; height:6px; }
+    .accent-blue   { background:linear-gradient(90deg,var(--brand-blue),#4a74f3); }
+    .accent-coffee { background:linear-gradient(90deg,var(--coffee),var(--mocha)); }
+    .accent-gold   { background:linear-gradient(90deg,var(--gold),#f5c842); }
+
+    .menu-card:hover { transform:translateY(-7px); box-shadow:0 18px 50px rgba(0,0,0,.13); }
+    .menu-icon { font-size:2.6rem; margin:8px 0 14px; display:block; }
+    .menu-card h4 { font-family:'Fredoka One',cursive; font-size:1.25rem; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+    .menu-items { list-style:none; }
+    .menu-items li { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px dashed #ead9c4; font-size:.93rem; color:#555; font-weight:600; }
+    .menu-items li:last-child { border-bottom:none; }
+    .menu-items li span:first-child { display:flex; align-items:center; gap:6px; }
+    .price { color:var(--brand-blue); font-weight:800; font-size:.95rem; }
+    .takeaway-note { margin-top:14px; background:#eef0fa; border:1.5px solid var(--brand-blue); border-radius:10px; padding:9px 14px; font-size:.82rem; color:var(--brand-blue); font-weight:700; display:flex; align-items:center; gap:6px; }
+    .chef-note { margin-top:10px; font-family:'Caveat',cursive; font-size:1rem; color:var(--coffee); text-align:center; font-weight:500; }
+
+    /* ─── DEAL BANNER ─── */
+    .deal-banner {
+      background:linear-gradient(135deg, var(--espresso) 0%, var(--coffee) 50%, var(--mocha) 100%);
+      color:var(--white); text-align:center; padding:80px 20px;
+      position:relative; overflow:hidden; z-index:2;
+    }
+    .deal-banner::before { content:'☕'; position:absolute; font-size:11rem; opacity:.06; top:-20px; left:-20px; animation:slowSpin 25s linear infinite; }
+    .deal-banner::after  { content:'🐾'; position:absolute; font-size:11rem; opacity:.06; bottom:-20px; right:-20px; animation:slowSpin 18s linear infinite reverse; }
+    .deal-banner h2 { font-family:'Fredoka One',cursive; font-size:clamp(2rem,5vw,3.5rem); margin-bottom:12px; }
+    .deal-banner h2 span { color:var(--gold); }
+    .deal-banner p { font-family:'Caveat',cursive; font-size:1.5rem; color:rgba(255,255,255,.8); margin-bottom:28px; }
+    .deal-tag { display:inline-block; background:var(--gold); color:var(--navy); font-size:1.15rem; font-weight:800; padding:14px 36px; border-radius:50px; animation:dealPop 1s ease-in-out infinite alternate; box-shadow:0 8px 24px rgba(232,184,75,.4); }
+    @keyframes dealPop { from{transform:scale(1)} to{transform:scale(1.07)} }
+
+    /* ─── INSTAGRAM ─── */
+    .instagram-section { background:linear-gradient(160deg,#f0f2ff 0%,#fdf6ec 100%); padding:90px 20px; position:relative; z-index:2; overflow:hidden; }
+    .instagram-section::before { content:''; position:absolute; top:-100px; left:-100px; width:400px; height:400px; background:radial-gradient(circle,rgba(33,33,168,.07),transparent 70%); border-radius:50%; pointer-events:none; }
+    .instagram-section::after  { content:''; position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; background:radial-gradient(circle,rgba(232,184,75,.09),transparent 70%); border-radius:50%; pointer-events:none; }
+    .ig-header { text-align:center; margin-bottom:48px; }
+    .ig-handle-badge { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color:white; padding:11px 28px; border-radius:50px; font-weight:800; font-size:1rem; margin-bottom:22px; box-shadow:0 6px 24px rgba(131,58,180,.35); text-decoration:none; transition:transform .2s,box-shadow .2s; }
+    .ig-handle-badge:hover { transform:translateY(-3px); box-shadow:0 12px 34px rgba(131,58,180,.5); }
+    .ig-stats { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:12px; }
+    .ig-stat { text-align:center; }
+    .ig-stat .num { font-family:'Fredoka One',cursive; font-size:2rem; color:var(--navy); display:block; }
+    .ig-stat .label { font-size:.78rem; color:#aaa; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+    .ig-feed-wrap { max-width:1060px; margin:0 auto 40px; background:var(--white); border-radius:24px; padding:32px 24px; box-shadow:0 8px 40px rgba(33,33,168,.1); border:1px solid rgba(33,33,168,.07); min-height:300px; }
+    .ig-follow-wrap { text-align:center; }
+    .ig-follow-btn { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color:white; padding:15px 38px; border-radius:50px; font-weight:800; font-size:1.05rem; text-decoration:none; box-shadow:0 6px 24px rgba(131,58,180,.35); animation:igPulse 2.5s ease-in-out infinite; transition:transform .2s; }
+    .ig-follow-btn:hover { transform:translateY(-3px); }
+    @keyframes igPulse { 0%,100%{box-shadow:0 6px 24px rgba(131,58,180,.35)} 50%{box-shadow:0 14px 42px rgba(131,58,180,.55)} }
+
+    /* ─── VISIT / INFO ─── */
+    .info-section { background:var(--cream); }
+    .info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:24px; }
+    .info-card { background:var(--white); border-radius:22px; padding:34px 26px; text-align:center; box-shadow:0 4px 22px rgba(0,0,0,.07); border-top:5px solid var(--brand-blue); transition:transform .2s,box-shadow .2s; position:relative; overflow:hidden; }
+    .info-card.coffee-card { border-top-color:var(--coffee); }
+    .info-card.gold-card   { border-top-color:var(--gold); }
+    .info-card:hover { transform:translateY(-6px); box-shadow:0 16px 44px rgba(0,0,0,.12); }
+    .info-icon { font-size:2.8rem; margin-bottom:14px; display:block; }
+    .info-card h4 { font-family:'Fredoka One',cursive; font-size:1.15rem; color:var(--navy); margin-bottom:10px; }
+    .info-card p { color:#666; font-size:.92rem; line-height:1.8; font-weight:600; }
+    .info-card .highlight { display:inline-block; margin-top:12px; background:var(--gold); color:var(--navy); padding:6px 16px; border-radius:50px; font-weight:800; font-size:.82rem; text-decoration:none; transition:transform .2s; }
+    .info-card .highlight:hover { transform:scale(1.05); }
+    .map-link { display:inline-flex; align-items:center; gap:6px; margin-top:12px; background:var(--navy); color:var(--white); padding:8px 18px; border-radius:50px; font-weight:800; font-size:.82rem; text-decoration:none; transition:transform .2s,background .2s; }
+    .map-link:hover { transform:scale(1.05); background:var(--brand-blue); }
+    .lift-note { display:inline-block; margin-top:8px; background:rgba(232,184,75,.15); border:1.5px solid var(--gold); color:var(--coffee); padding:5px 14px; border-radius:8px; font-size:.8rem; font-weight:700; }
+
+    /* ─── FOOTER ─── */
+    footer { background:#07071a; color:rgba(255,255,255,.6); text-align:center; padding:60px 20px 30px; position:relative; z-index:2; }
+    .footer-logo-img { width:72px; height:72px; border-radius:50%; background:var(--logo-bg); object-fit:contain; padding:6px; margin:0 auto 14px; display:block; box-shadow:0 8px 28px rgba(0,0,0,.45); transition:transform .3s; }
+    .footer-logo-img:hover { transform:rotate(10deg) scale(1.12); }
+    .footer-name { font-family:'Caveat',cursive; font-size:2.2rem; color:var(--white); margin-bottom:4px; font-weight:700; }
+    .footer-tagline { font-family:'Caveat',cursive; font-size:1.15rem; margin-bottom:8px; }
+    .footer-addr { font-size:.82rem; color:rgba(255,255,255,.35); margin-bottom:26px; line-height:1.6; }
+    .footer-links { display:flex; justify-content:center; gap:22px; flex-wrap:wrap; margin-bottom:26px; }
+    .footer-links a { color:rgba(255,255,255,.5); text-decoration:none; font-weight:700; font-size:.88rem; transition:color .2s; }
+    .footer-links a:hover { color:var(--gold); }
+    .footer-paws { font-size:1.4rem; margin:10px 0; letter-spacing:8px; animation:pawShimmer 2.5s ease-in-out infinite; }
+    @keyframes pawShimmer { 0%,100%{opacity:.35} 50%{opacity:1} }
+    .footer-copy { font-size:.78rem; color:rgba(255,255,255,.25); }
+
+    /* ─── SCROLL DOG BTN ─── */
+    #scroll-dog { position:fixed; bottom:24px; right:24px; z-index:999; cursor:pointer; background:var(--gold); border-radius:50%; width:58px; height:58px; display:none; align-items:center; justify-content:center; font-size:1.8rem; box-shadow:0 6px 22px rgba(0,0,0,.25); transition:transform .2s; }
+    #scroll-dog:hover { transform:scale(1.15) rotate(14deg); }
+
+    .confetti-piece { position:fixed; border-radius:2px; pointer-events:none; z-index:9999; animation:confettiFall 1.5s ease-out forwards; }
+    @keyframes confettiFall { 0%{opacity:1;transform:translateY(0) rotate(0)} 100%{opacity:0;transform:translateY(220px) rotate(720deg)} }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:768px){
+      nav { padding:10px 18px; }
+      .nav-links { display:none; }
+      .about-logo-circle { width:220px; height:220px; }
+      .ig-feed-wrap { padding:18px 10px; }
+      .chalk-banner h3 { font-size:1.8rem; }
     }
   </style>
 </head>
@@ -295,35 +426,52 @@
 <!-- ══ NAV ══ -->
 <nav>
   <a href="#home" class="nav-logo">
-    <img src="logo.png" alt="Two Beans Logo"/>
-    <span class="nav-logo-text">two beans</span>
+    <img src="logo.jpg" alt="Two Beans Logo"/>
+    <span class="nav-logo-text">two beans ☕</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#residents">Residents</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#residents">The Dogs</a></li>
+    <li><a href="#team">The Humans</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#instagram">Instagram</a></li>
-    <li><a href="#visit">Visit</a></li>
+    <li><a href="#visit">Visit Us</a></li>
   </ul>
 </nav>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="home">
+  <!-- Decorative coffee rings -->
+  <div class="coffee-ring hero-ring-1" style="width:320px;height:320px;top:8%;left:-80px;border:18px solid rgba(201,168,124,.15);position:absolute;border-radius:50%;"></div>
+  <div class="coffee-ring hero-ring-2" style="width:200px;height:200px;bottom:12%;right:-40px;border:12px solid rgba(201,168,124,.12);position:absolute;border-radius:50%;"></div>
+  <div class="coffee-ring hero-ring-3" style="width:120px;height:120px;top:22%;right:14%;border:8px solid rgba(201,168,124,.1);position:absolute;border-radius:50%;"></div>
+
   <div class="hero-content">
-    <div class="hero-badge">☕ Singapore's Cosiest Café 🐾</div>
-    <div class="hero-logo-wrap">
-      <img src="logo.png" alt="Two Beans Café Logo"/>
+    <div class="hero-badge">☕ Singapore's Cosiest Home Café 🐾</div>
+
+    <!-- Steam above logo -->
+    <div class="steam-wrap">
+      <div class="steam" style="height:30px;"></div>
+      <div class="steam" style="height:40px;"></div>
+      <div class="steam" style="height:26px;"></div>
     </div>
+
+    <div class="hero-logo-wrap">
+      <img src="logo.jpg" alt="Two Beans Café Logo"/>
+    </div>
+
     <h1>two <span>beans</span></h1>
+    <p class="hero-sub">a home café by 2 neighbours ✨</p>
     <p class="hero-tagline">
-      Come for good chats and good cuppas<br/>
-      with our fluffy residents! 🐶
+      Come for good chats &amp; great cuppas.<br/>
+      Stay for the <em>wagging tails</em> and warm hearts. 🐶
     </p>
     <div class="hero-btns">
       <a href="#menu" class="btn-primary">☕ See Our Menu</a>
-      <a href="#residents" class="btn-outline">🐾 Meet the Dogs</a>
+      <a href="#residents" class="btn-outline">🐾 Meet the Residents</a>
     </div>
   </div>
+
   <div class="dog-container">
     <div class="running-dog" id="runDog">🐕</div>
   </div>
@@ -332,110 +480,236 @@
 <!-- ══ PERKS STRIP ══ -->
 <div class="perks-strip">
   <div class="perks-track">
-    <span>☕ Good Cuppas</span><span>🐾 Fluffy Residents</span><span>💰 $0.50 Off Takeaways</span><span>🛋 Dine-In Friendly</span><span>☕ Good Chats</span><span>🐕 Dog Café Singapore</span><span>🌟 472+ Happy Fans</span>
-    <span>☕ Good Cuppas</span><span>🐾 Fluffy Residents</span><span>💰 $0.50 Off Takeaways</span><span>🛋 Dine-In Friendly</span><span>☕ Good Chats</span><span>🐕 Dog Café Singapore</span><span>🌟 472+ Happy Fans</span>
+    <span>☕ Specialty Coffee</span><span class="sep">·</span>
+    <span>🐾 Resident Furry Friends</span><span class="sep">·</span>
+    <span>💰 $0.50 Off Takeaways</span><span class="sep">·</span>
+    <span>🛋 Cosy Dine-In Vibes</span><span class="sep">·</span>
+    <span>🐕 Mr. Brooklyn &amp; Mr. Dango</span><span class="sep">·</span>
+    <span>🌟 472+ Happy Fans</span><span class="sep">·</span>
+    <span>🏠 Home Café by 2 Neighbours</span><span class="sep">·</span>
+    <span>☕ Specialty Coffee</span><span class="sep">·</span>
+    <span>🐾 Resident Furry Friends</span><span class="sep">·</span>
+    <span>💰 $0.50 Off Takeaways</span><span class="sep">·</span>
+    <span>🛋 Cosy Dine-In Vibes</span><span class="sep">·</span>
+    <span>🐕 Mr. Brooklyn &amp; Mr. Dango</span><span class="sep">·</span>
+    <span>🌟 472+ Happy Fans</span><span class="sep">·</span>
+    <span>🏠 Home Café by 2 Neighbours</span><span class="sep">·</span>
   </div>
 </div>
 
-<!-- ══ ABOUT ══ -->
+<!-- ══ ABOUT / OUR STORY ══ -->
 <section class="about-section" id="about">
+  <div style="position:absolute;width:260px;height:260px;top:-80px;right:-60px;border-radius:50%;border:16px solid rgba(111,78,55,.07);pointer-events:none;"></div>
+  <div style="position:absolute;width:140px;height:140px;bottom:40px;left:30px;border-radius:50%;border:10px solid rgba(139,90,43,.05);pointer-events:none;"></div>
+
   <div class="container">
+    <h2 class="section-title">Our <span>Story</span> ☕</h2>
+    <p class="section-sub">Where every cup tells a tale, and every visit feels like home</p>
+
     <div class="about-grid">
       <div class="about-logo-wrap">
         <div class="about-logo-circle">
-          <img src="logo.png" alt="Two Beans Logo"/>
+          <img src="logo.jpg" alt="Two Beans Logo"/>
         </div>
+        <div class="chalk-tag">est. with ❤ &amp; good beans</div>
       </div>
       <div class="about-text">
-        <h3>Where Every Cup Tells a Story 🐕</h3>
+        <h3>More Than a Café — <span>It's Home</span> 🏠</h3>
         <p>
-          We're not just a café — we're a cosy corner where great coffee meets wagging tails.
-          Our fluffy residents will keep you company while you sip on your favourite cuppa
-          and enjoy some of the best chats in town.
+          Two Beans is a cosy home café born out of a neighbourly friendship and a shared love of
+          good coffee. Started by two neighbours, Sophia/Ces and Tia, this little corner exists
+          for those who crave more than just a cup — they crave connection.
         </p>
         <p>
-          Whether you're here for a quick takeaway or a long dine-in session,
-          Two Beans is your happy place. Pull up a chair, grab a cup, and let the good times roll.
+          Whether you pull up for a quick takeaway or stay for hours with Mr. Brooklyn and
+          Mr. Dango by your side, you'll always leave with a full cup and a fuller heart.
+          That's the Two Beans promise. ☕🐾
+        </p>
+        <p>
+          We believe the best barista is one who knows your order — and your dog's name.
         </p>
         <div class="about-chips">
-          <span class="chip blue">☕ Specialty Coffee</span>
-          <span class="chip">🐾 Dog Residents</span>
-          <span class="chip gold">💰 $0.50 Off Takeaways</span>
-          <span class="chip">🛋 Dine-In</span>
-          <span class="chip blue">💬 Good Vibes</span>
+          <span class="chip chip-blue">☕ Specialty Coffee</span>
+          <span class="chip chip-navy">🐾 Dog Residents</span>
+          <span class="chip chip-gold">💰 $0.50 Takeaway Discount</span>
+          <span class="chip chip-coffee">🏠 Home Café</span>
+          <span class="chip chip-blue">💬 Good Vibes Only</span>
+          <span class="chip chip-navy">🤝 2 Neighbours, 1 Dream</span>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ══ CHALKBOARD BANNER ══ -->
+<div class="chalk-banner">
+  <div class="chalk-border"></div>
+  <div class="chalk-corner tl">☕</div>
+  <div class="chalk-corner tr">🫘</div>
+  <div class="chalk-corner bl">🐾</div>
+  <div class="chalk-corner br">✨</div>
+
+  <div class="steam-wrap">
+    <div class="steam" style="height:32px;"></div>
+    <div class="steam" style="height:44px;background:rgba(255,255,255,.5);"></div>
+    <div class="steam" style="height:28px;"></div>
+  </div>
+  <span class="cup-icon">☕</span>
+  <h3>Crafted with love &amp; really good beans</h3>
+  <p>Every cup brewed with care — just the way you like it</p>
+</div>
 
 <!-- ══ DOGS ══ -->
 <section class="dogs-section" id="residents">
   <div class="container">
     <h2 class="section-title">Meet Our <span>Fluffy Residents</span> 🐾</h2>
-    <p class="section-sub">Our dogs don't bite — but they might steal your heart (and your croissant)</p>
+    <p class="section-sub">They don't bite — but they will absolutely steal your croissant</p>
     <div class="dogs-grid">
-      <div class="dog-card"><span class="dog-emoji">🐕</span><h4>Biscuit</h4><p>Head of Cuddles & Chief Nap Officer. Loves belly rubs and Americano aromas.</p><span class="badge">Good Boy ✓</span></div>
-      <div class="dog-card"><span class="dog-emoji">🦮</span><h4>Latte</h4><p>Smooth as the drink she's named after. She'll sit with you on tough days.</p><span class="badge">Mood Booster ✓</span></div>
-      <div class="dog-card"><span class="dog-emoji">🐩</span><h4>Mocha</h4><p>Fluffy, fancy, and will absolutely judge your coffee order. Lovingly of course.</p><span class="badge">Fashionista ✓</span></div>
-      <div class="dog-card"><span class="dog-emoji">🐶</span><h4>Espresso</h4><p>Small but mighty. Tiny paws, huge personality — just like his namesake.</p><span class="badge">Extra Shot ✓</span></div>
+
+      <div class="dog-card">
+        <div class="paw-row">🐾 🐾 🐾</div>
+        <span class="dog-emoji">🦮</span>
+        <h4>Mr. Brooklyn</h4>
+        <div class="dog-breed">Golden Retriever 🌟</div>
+        <p>
+          The ultimate host. Mr. Brooklyn will greet you at the door, nap dramatically under
+          your table, and somehow make your coffee taste better just by being there. He's the
+          reason half our regulars keep coming back.
+        </p>
+        <span class="dog-badge dog-badge-gold">Chief Nap Officer ✓</span>
+      </div>
+
+      <div class="dog-card">
+        <div class="paw-row">🐾 🐾 🐾</div>
+        <span class="dog-emoji">🐕</span>
+        <h4>Mr. Dango</h4>
+        <div class="dog-breed">Shiba Inu 🍡</div>
+        <p>
+          Sweet as the mochi he's named after, with just enough Shiba attitude to keep things
+          interesting. Mr. Dango will judge your coffee order silently but still sit with you
+          on your worst days. A true mood booster with flair.
+        </p>
+        <span class="dog-badge dog-badge-blue">Head of Vibes ✓</span>
+      </div>
+
+    </div>
+
+    <!-- mini note -->
+    <p style="text-align:center;margin-top:36px;font-family:'Caveat',cursive;font-size:1.25rem;color:rgba(255,255,255,.45);">
+      🚫 Outside pets not permitted — our residents run a tight ship!
+    </p>
+  </div>
+</section>
+
+<!-- ══ TEAM ══ -->
+<section class="team-section" id="team">
+  <div class="container">
+    <h2 class="section-title">Meet the <span>Humans</span> 👋</h2>
+    <p class="section-sub">The two neighbours behind your favourite cup</p>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#eef0fa,#d4d9f0);">👩🍳</div>
+        <h4>Sophia / Ces</h4>
+        <div class="team-role">Co-founder · Head Barista</div>
+        <p>The one who makes sure every cup is dialled in just right. Sophia brings the coffee know-how, the warm smile, and probably the best latte art in the building.</p>
+        <div class="team-note">☕ "Life is too short for bad coffee."</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#fdf6ec,#f5e6cc);">🎨</div>
+        <h4>Tia</h4>
+        <div class="team-role">Co-founder · Vibes Director</div>
+        <p>The creative heart of Two Beans. Tia curates the playlist, the aesthetic, and the energy that makes you want to stay for just one more cup (and one more cuddle with Dango).</p>
+        <div class="team-note">🐾 "Coffee + dogs = peak happiness."</div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ══ COFFEE ANIM ══ -->
+<!-- ══ COFFEE CRAFT ANIM ══ -->
 <div class="coffee-anim-section">
-  <div class="coffee-logo-anim">
-    <img src="logo.png" alt="Two Beans"/>
+  <div class="steam-wrap" style="justify-content:center;margin-bottom:10px;">
+    <div class="steam" style="height:30px;"></div>
+    <div class="steam" style="height:42px;"></div>
+    <div class="steam" style="height:24px;"></div>
   </div>
-  <h3>Crafted with Love & Good Beans</h3>
-  <p>Every cup brewed with care — just the way you like it ☕</p>
+  <div class="coffee-logo-anim">
+    <img src="logo.jpg" alt="Two Beans"/>
+  </div>
+  <h3>Barista-Crafted, Neighbour-Made</h3>
+  <p>Every order is made with intention — and a little love 🫶</p>
+  <div class="roast-badges">
+    <span class="roast-badge">🫘 Single Origin Beans</span>
+    <span class="roast-badge">🥛 Alt Milk Friendly</span>
+    <span class="roast-badge">🧊 Cold Brew In-House</span>
+    <span class="roast-badge">🐾 Dog-Approved Ambience</span>
+  </div>
 </div>
 
 <!-- ══ MENU ══ -->
 <section class="menu-section" id="menu">
   <div class="container">
-    <h2 class="section-title">Our <span>Menu</span> ☕</h2>
-    <p class="section-sub">Simple, soulful, and seriously good</p>
+    <h2 class="section-title">The <span>Menu</span> ☕</h2>
+    <p class="section-sub">Simple, soulful, and seriously good — just like the café itself</p>
     <div class="menu-grid">
+
+      <!-- Hot Drinks -->
       <div class="menu-card">
+        <div class="menu-card-accent accent-blue"></div>
+        <div class="steam-wrap" style="height:28px;margin-top:14px;">
+          <div class="steam" style="height:22px;background:rgba(33,33,168,.25);"></div>
+          <div class="steam" style="height:30px;background:rgba(33,33,168,.25);"></div>
+          <div class="steam" style="height:18px;background:rgba(33,33,168,.25);"></div>
+        </div>
         <span class="menu-icon">☕</span>
-        <h4>Hot Drinks</h4>
+        <h4>🔥 Hot Drinks</h4>
         <ul class="menu-items">
-          <li><span>Flat White</span><span class="price">$5.50</span></li>
-          <li><span>Latte</span><span class="price">$5.50</span></li>
-          <li><span>Cappuccino</span><span class="price">$5.50</span></li>
-          <li><span>Americano</span><span class="price">$4.50</span></li>
-          <li><span>Long Black</span><span class="price">$4.50</span></li>
-          <li><span>Hot Choco</span><span class="price">$5.00</span></li>
+          <li><span>☕ Flat White</span><span class="price">$5.50</span></li>
+          <li><span>🥛 Latte</span><span class="price">$5.50</span></li>
+          <li><span>💫 Cappuccino</span><span class="price">$5.50</span></li>
+          <li><span>⚡ Americano</span><span class="price">$4.50</span></li>
+          <li><span>🖤 Long Black</span><span class="price">$4.50</span></li>
+          <li><span>🍫 Hot Choco</span><span class="price">$5.00</span></li>
         </ul>
         <div class="takeaway-note">💰 Save $0.50 on all takeaways!</div>
+        <p class="chef-note">✍ "Our barista's fave: Flat White, no sugar."</p>
       </div>
+
+      <!-- Cold Drinks -->
       <div class="menu-card">
-        <span class="menu-icon">🧊</span>
-        <h4>Cold Drinks</h4>
+        <div class="menu-card-accent accent-coffee"></div>
+        <span class="menu-icon" style="margin-top:22px;">🧊</span>
+        <h4>❄ Cold Drinks</h4>
         <ul class="menu-items">
-          <li><span>Iced Latte</span><span class="price">$6.00</span></li>
-          <li><span>Cold Brew</span><span class="price">$6.50</span></li>
-          <li><span>Iced Mocha</span><span class="price">$6.50</span></li>
-          <li><span>Matcha Latte</span><span class="price">$6.00</span></li>
-          <li><span>Sparkling Yuzu</span><span class="price">$6.50</span></li>
-          <li><span>Iced Choco</span><span class="price">$5.50</span></li>
+          <li><span>🧊 Iced Latte</span><span class="price">$6.00</span></li>
+          <li><span>🖤 Cold Brew</span><span class="price">$6.50</span></li>
+          <li><span>🍫 Iced Mocha</span><span class="price">$6.50</span></li>
+          <li><span>🍵 Matcha Latte</span><span class="price">$6.00</span></li>
+          <li><span>🍋 Sparkling Yuzu</span><span class="price">$6.50</span></li>
+          <li><span>🍫 Iced Choco</span><span class="price">$5.50</span></li>
         </ul>
         <div class="takeaway-note">💰 Save $0.50 on all takeaways!</div>
+        <p class="chef-note">✍ "Cold Brew on a hot SG day — yes please."</p>
       </div>
+
+      <!-- Bites -->
       <div class="menu-card">
-        <span class="menu-icon">🥐</span>
-        <h4>Bites & Treats</h4>
+        <div class="menu-card-accent accent-gold"></div>
+        <span class="menu-icon" style="margin-top:22px;">🥐</span>
+        <h4>🍽 Bites &amp; Treats</h4>
         <ul class="menu-items">
-          <li><span>Butter Croissant</span><span class="price">$4.00</span></li>
-          <li><span>Almond Croissant</span><span class="price">$5.00</span></li>
-          <li><span>Banana Bread</span><span class="price">$4.50</span></li>
-          <li><span>Avocado Toast</span><span class="price">$10.00</span></li>
-          <li><span>Cookie</span><span class="price">$3.50</span></li>
-          <li><span>Cheese Scone</span><span class="price">$4.00</span></li>
+          <li><span>🥐 Butter Croissant</span><span class="price">$4.00</span></li>
+          <li><span>🌰 Almond Croissant</span><span class="price">$5.00</span></li>
+          <li><span>🍌 Banana Bread</span><span class="price">$4.50</span></li>
+          <li><span>🥑 Avocado Toast</span><span class="price">$10.00</span></li>
+          <li><span>🍪 Cookie</span><span class="price">$3.50</span></li>
+          <li><span>🧀 Cheese Scone</span><span class="price">$4.00</span></li>
         </ul>
+        <p class="chef-note">✍ "Pair the Almond Croissant with a Flat White. Trust us."</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -443,16 +717,13 @@
 <!-- ══ DEAL BANNER ══ -->
 <div class="deal-banner">
   <h2>🐾 Get <span>$0.50 Off</span> Your Takeaway! ☕</h2>
-  <p>Every takeaway order gets you a little discount — because you deserve it.</p>
-  <div class="deal-tag">🥤 Takeaway Discount Active!</div>
+  <p>Every takeaway gets you a little discount — because you deserve it, friend.</p>
+  <div class="deal-tag">🥤 Takeaway Discount Always Active!</div>
 </div>
 
-<!-- ══════════════════════════════════════
-     INSTAGRAM SECTION — Live Elfsight Feed
-══════════════════════════════════════ -->
+<!-- ══ INSTAGRAM ══ -->
 <section class="instagram-section" id="instagram">
   <div class="container">
-
     <div class="ig-header">
       <a href="https://www.instagram.com/twobeans.twobeans/" target="_blank" class="ig-handle-badge">
         📸 @twobeans.twobeans
@@ -466,7 +737,6 @@
       </div>
     </div>
 
-    <!-- ✅ LIVE ELFSIGHT INSTAGRAM FEED -->
     <div class="ig-feed-wrap">
       <script src="https://elfsightcdn.com/platform.js" async></script>
       <div class="elfsight-app-cc6779ed-3bd7-4ddf-b080-293c15df57e7" data-elfsight-app-lazy></div>
@@ -477,7 +747,6 @@
         📸 Follow @twobeans.twobeans
       </a>
     </div>
-
   </div>
 </section>
 
@@ -487,110 +756,155 @@
     <h2 class="section-title">Come <span>Visit Us</span> 🗺</h2>
     <p class="section-sub">We're always happy to see a new face (or paw)</p>
     <div class="info-grid">
+
       <div class="info-card">
         <span class="info-icon">📍</span>
         <h4>Location</h4>
-        <p>Find us on Instagram <strong>@twobeans.twobeans</strong> for our exact address and directions!</p>
-        <span class="highlight">📲 DM for Address</span>
+        <p>
+          <strong>124 Geylang East Ave 1</strong><br/>
+          #03-35, Singapore 380124<br/><br/>
+          Access via <strong>Lift — Lobby A</strong><br/>
+          (near the playground 🛝)
+        </p>
+        <div class="lift-note">🛗 Take Lift at Lobby A → Level 3</div><br/>
+        <a href="https://maps.google.com/?q=124+Geylang+East+Ave+1+Singapore+380124" target="_blank" class="map-link">
+          🗺 Open in Google Maps
+        </a>
       </div>
-      <div class="info-card">
+
+      <div class="info-card coffee-card">
         <span class="info-icon">🕐</span>
         <h4>Opening Hours</h4>
-        <p>Mon–Fri: 8:00 AM – 6:00 PM<br/>Sat–Sun: 9:00 AM – 7:00 PM<br/>Public Holidays: 10:00 AM – 5:00 PM</p>
+        <p>
+          Mon – Fri: <strong>8:00 AM – 6:00 PM</strong><br/>
+          Sat – Sun: <strong>9:00 AM – 7:00 PM</strong><br/>
+          Public Holidays: <strong>10:00 AM – 5:00 PM</strong>
+        </p>
         <span class="highlight">Open Daily ✓</span>
       </div>
-      <div class="info-card">
+
+      <div class="info-card gold-card">
         <span class="info-icon">📜</span>
         <h4>House Rules</h4>
-        <p>🐕 Resident dogs are here!<br/>🚫 No outside pets allowed<br/>☕ $0.50 off takeaways<br/>💬 Good vibes mandatory</p>
-        <span class="highlight">Pets Not Allowed 🚫</span>
+        <p>
+          🐕 Meet Mr. Brooklyn &amp; Mr. Dango!<br/>
+          🚫 No outside pets allowed<br/>
+          ☕ $0.50 off all takeaways<br/>
+          🛗 Access via Lift, Lobby A<br/>
+          💬 Good vibes are mandatory
+        </p>
+        <span class="highlight">Furry Residents Inside 🐾</span>
       </div>
+
       <div class="info-card">
         <span class="info-icon">📸</span>
-        <h4>Follow Us</h4>
-        <p>Stay up to date with menu drops, dog updates & special offers on Instagram!</p>
+        <h4>Follow &amp; Connect</h4>
+        <p>Stay updated on menu drops, dog shenanigans, and daily specials!</p>
         <a href="https://instagram.com/twobeans.twobeans" target="_blank" class="highlight">@twobeans.twobeans ↗</a>
+        <br/>
+        <a href="https://maps.google.com/?q=124+Geylang+East+Ave+1+Singapore+380124" target="_blank" style="display:inline-block;margin-top:10px;font-size:.82rem;color:var(--brand-blue);font-weight:700;text-decoration:none;">
+          📍 Geylang East Ave 1, #03-35 ↗
+        </a>
       </div>
+
     </div>
+
+    <!-- Map embed -->
+    <div style="margin-top:48px;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.12);border:3px solid rgba(33,33,168,.1);">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7766!2d103.8929!3d1.3206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da17b2b!2s124+Geylang+East+Ave+1%2C+Singapore+380124!5e0!3m2!1sen!2ssg!4v1"
+        width="100%" height="320" style="border:0;display:block;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Two Beans Café Location — 124 Geylang East Ave 1">
+      </iframe>
+    </div>
+    <p style="text-align:center;margin-top:14px;font-family:'Caveat',cursive;font-size:1.1rem;color:#999;">
+      🛗 Lobby A Lift → Level 3 → #03-35 · Near the playground
+    </p>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <img src="logo.png" alt="Two Beans" class="footer-logo-img"/>
-  <div class="footer-name">two beans</div>
-  <p class="footer-tagline">Good chats. Good cuppas. Fluffy friends.</p>
+  <img src="logo.jpg" alt="Two Beans" class="footer-logo-img"/>
+  <div class="footer-name">two beans ☕</div>
+  <p class="footer-tagline">Good chats. Good cuppas. Wagging tails.</p>
+  <p class="footer-addr">
+    124 Geylang East Ave 1, #03-35 · Singapore 380124<br/>
+    Access via Lift, Lobby A · Near the playground 🛝
+  </p>
   <div class="footer-paws">🐾 🐾 🐾</div>
   <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#residents">Our Dogs</a>
+    <a href="#about">Our Story</a>
+    <a href="#residents">The Dogs</a>
+    <a href="#team">The Humans</a>
     <a href="#menu">Menu</a>
     <a href="#instagram">Instagram</a>
-    <a href="#visit">Visit</a>
+    <a href="#visit">Visit Us</a>
     <a href="https://instagram.com/twobeans.twobeans" target="_blank">Follow Us</a>
   </div>
-  <p class="footer-copy">© 2024 Two Beans Café · Made with ☕ & 🐾 · All rights reserved</p>
+  <p class="footer-copy">© 2026 Two Beans Café · A home café by 2 neighbours · Made with ☕ &amp; 🐾</p>
 </footer>
 
 <div id="scroll-dog" onclick="scrollToTop()" title="Back to top">🐕</div>
 
 <script>
-  // FLOATING BEANS
+  // ── FLOATING BEANS / PAWS ──
   const bg = document.getElementById('beansBg');
-  const symbols = ['🫘','🫘','☕','🐾','🫘','🫘','🫘'];
-  for(let i = 0; i < 30; i++){
+  const symbols = ['🫘','🫘','🫘','☕','🐾','✨','🫘','🫘'];
+  for(let i = 0; i < 32; i++){
     const b = document.createElement('div');
     b.className = 'bean';
     b.textContent = symbols[Math.floor(Math.random() * symbols.length)];
     b.style.left = Math.random() * 100 + '%';
-    b.style.fontSize = (0.9 + Math.random() * 1.3) + 'rem';
-    b.style.animationDuration = (10 + Math.random() * 16) + 's';
-    b.style.animationDelay = (Math.random() * 14) + 's';
+    b.style.fontSize = (.8 + Math.random() * 1.2) + 'rem';
+    b.style.animationDuration = (10 + Math.random() * 18) + 's';
+    b.style.animationDelay = (Math.random() * 16) + 's';
     bg.appendChild(b);
   }
 
-  // PAW TRAIL
+  // ── PAW TRAIL ──
   const runDog = document.getElementById('runDog');
   setInterval(() => {
     const r = runDog.getBoundingClientRect();
     const p = document.createElement('div');
     p.className = 'paw-trail';
-    p.textContent = ['🐾','✨','💛'][Math.floor(Math.random() * 3)];
-    p.style.cssText = `left:${r.left}px;top:${r.top}px;font-size:1.2rem;`;
+    p.textContent = ['🐾','✨','💛','☕'][Math.floor(Math.random() * 4)];
+    p.style.cssText = `left:${r.left}px;top:${r.top}px;font-size:1.1rem;`;
     document.body.appendChild(p);
     setTimeout(() => p.remove(), 2000);
   }, 700);
 
-  // SCROLL DOG
+  // ── SCROLL DOG BTN ──
   const scrollBtn = document.getElementById('scroll-dog');
   window.addEventListener('scroll', () => {
     scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
   });
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function scrollToTop(){
+    window.scrollTo({ top:0, behavior:'smooth' });
     launchConfetti();
   }
 
-  // CONFETTI
-  function launchConfetti() {
-    const cols = ['#e8b84b','#2121a8','#6f4e37','#ffffff','#c9a87c','#833ab4'];
-    for(let i = 0; i < 45; i++){
+  // ── CONFETTI ──
+  function launchConfetti(){
+    const cols = ['#e8b84b','#2121a8','#6f4e37','#ffffff','#c9a87c','#833ab4','#f5e6cc'];
+    for(let i = 0; i < 50; i++){
       setTimeout(() => {
         const c = document.createElement('div');
         c.className = 'confetti-piece';
-        c.style.left = (15 + Math.random() * 70) + 'vw';
+        c.style.left = (10 + Math.random() * 80) + 'vw';
         c.style.top = '80vh';
         c.style.background = cols[Math.floor(Math.random() * cols.length)];
-        c.style.width = (6 + Math.random() * 10) + 'px';
+        c.style.width  = (6 + Math.random() * 10) + 'px';
         c.style.height = (6 + Math.random() * 10) + 'px';
         c.style.animationDuration = (1 + Math.random()) + 's';
         document.body.appendChild(c);
-        setTimeout(() => c.remove(), 2200);
-      }, i * 28);
+        setTimeout(() => c.remove(), 2400);
+      }, i * 26);
     }
   }
 
-  // FADE IN ON SCROLL
+  // ── FADE-IN ON SCROLL ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(e.isIntersecting){
@@ -598,12 +912,14 @@
         e.target.style.transform = 'translateY(0)';
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
-  document.querySelectorAll('.dog-card, .menu-card, .info-card, .about-text, .ig-feed-wrap').forEach(el => {
+  document.querySelectorAll(
+    '.dog-card, .menu-card, .info-card, .about-text, .ig-feed-wrap, .team-card'
+  ).forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(28px)';
-    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
     observer.observe(el);
   });
 </script>
